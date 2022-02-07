@@ -1,0 +1,81 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link href='/resources/css/lib/bootstrap.min.css' rel='stylesheet' />
+    <script src='/resources/js/lib/popper.min.js'></script>
+    <script src='/resources/js/lib/bootstrap.min.js'></script>
+    <script src='/resources/js/lib/axios.min.js'></script>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12 mt-5'>
+          <form id='create-page' onsubmit='return validatForm(event)' novalidate>
+            <div class='modal-header'>
+              <h5 class='modal-title' id='addPageModalLabel'>Create Page</h5>
+            </div>
+            <div class='modal-body'>
+              <div class='col-auto'>
+                <label for='name' class='form-label'>Name</label>
+                <input
+                  type='text'
+                  class='form-control form-control-sm'
+                  id='name'
+                  name='name'
+                  placeholder='Name of Page'
+                  required
+                />
+                <div class='invalid-feedback'>
+                  Please provide a valid name.
+                </div>
+              </div>
+            </div>
+            <div class='modal-footer'>
+              <button
+                type='button'
+                class='btn btn-secondary btn-sm'
+                data-bs-dismiss='modal'
+                onclick='clearForm()'
+              >
+                Clear
+              </button>
+              <button type='submit' class='btn btn-primary btn-sm'>
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class='col-12 my-2'>
+          <table class='table table-bordered table-hover'>
+            <thead>
+
+              <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Slug</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{#each pages}}
+                <tr>
+                  <td>{{this._id}}</td>
+                  <td>{{this.name}}</td>
+                  <td>{{this.slug}}</td>
+                  <td>
+                    <a href='/api/editor/{{this._id}}'>Edit</a>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script type='text/javascript' src='/resources/js/custom.js'></script>
+  </body>
+</html>
